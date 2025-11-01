@@ -1,0 +1,447 @@
+/* === NEGARA VALAS - Luxury Financial LED Theme === */
+
+:root {
+  --bg: #0b0b0b;
+  --gold: #d4af37;
+  --gold-soft: #b9972f;
+  --panel: #111;
+  --text: #f0e6cc;
+  --whatsapp: #25d366;
+  --facebook: #1877f2;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: radial-gradient(circle at center, #141414 0%, #050505 100%);
+  font-family: "Poppins", sans-serif;
+  color: var(--text);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 30px;
+}
+
+.container {
+  width: 1400px;
+  background: linear-gradient(180deg, #0e0e0e, #090909);
+  border-radius: 16px;
+  border: 1px solid rgba(212, 175, 55, 0.1);
+  box-shadow: 0 0 80px rgba(212, 175, 55, 0.05),
+    inset 0 0 60px rgba(0, 0, 0, 0.4);
+  padding: 20px 30px;
+}
+
+/* === HEADER === */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: relative;
+  padding-bottom: 8px;
+}
+
+.logo {
+  width: 150px;
+  border-radius: 8px;
+  margin-right: 24px;
+}
+
+.header-text-container {
+  text-align: center;
+  flex-grow: 1;
+}
+.header-text {
+  font-family: "Playfair Display", serif;
+  color: var(--text);
+  font-size: 52px;
+  letter-spacing: 3px;
+}
+.sub-header-text {
+  color: var(--gold);
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-top: 6px;
+  font-size: 18px;
+}
+
+/* === ALAMAT KANTOR === */
+.office-address {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.address-item {
+  color: var(--text);
+  font-size: 14px;
+  margin: 4px 0;
+  line-height: 1.4;
+}
+
+.address-item strong {
+  color: var(--gold);
+  font-weight: 600;
+}
+
+/* === BLINKING TAGLINE === */
+.sub-header-text-blink {
+  color: var(--gold);
+  text-align: center;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  margin-top: 8px;
+  animation: blink 2.5s linear infinite;
+  text-shadow: 0 0 8px rgba(212, 175, 55, 0.4);
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 0.9;
+    filter: brightness(0.9);
+  }
+  50% {
+    opacity: 1;
+    filter: brightness(1.2);
+  }
+}
+
+/* === CONTACT INFO - NEW DESIGN === */
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  min-width: 280px;
+  margin-left: 20px;
+}
+
+.contact-card {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #111 0%, #1a1a1a 100%);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(212, 175, 55, 0.1),
+    transparent
+  );
+  transition: left 0.5s ease;
+}
+
+.contact-card:hover::before {
+  left: 100%;
+}
+
+.contact-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(212, 175, 55, 0.2);
+  border-color: rgba(212, 175, 55, 0.4);
+}
+
+.whatsapp-card {
+  border-left: 4px solid var(--whatsapp);
+}
+
+.facebook-card {
+  border-left: 4px solid var(--facebook);
+}
+
+.contact-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+  background: rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.contact-icon img {
+  width: 28px;
+  height: 28px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.whatsapp-card .contact-icon {
+  background: linear-gradient(135deg, var(--whatsapp), #128c7e);
+}
+
+.facebook-card .contact-icon {
+  background: linear-gradient(135deg, var(--facebook), #1666c6);
+}
+
+.contact-details {
+  flex-grow: 1;
+}
+
+.contact-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  opacity: 0.8;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.contact-value {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: 8px;
+  text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+}
+
+.contact-button {
+  display: inline-block;
+  padding: 6px 12px;
+  background: linear-gradient(135deg, var(--gold), var(--gold-soft));
+  color: #000;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
+}
+
+.contact-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.5);
+  filter: brightness(1.1);
+}
+
+.whatsapp-card .contact-button {
+  background: linear-gradient(135deg, var(--whatsapp), #128c7e);
+  color: white;
+}
+
+.facebook-card .contact-button {
+  background: linear-gradient(135deg, var(--facebook), #1666c6);
+  color: white;
+}
+
+/* === CURRENCY LIST === */
+.price-board {
+  margin-top: 25px;
+  text-align: center;
+}
+.price-board h2 {
+  color: var(--gold);
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.currency-list {
+  display: inline-block;
+  width: 45%;
+  background: var(--panel);
+  border-radius: 10px;
+  padding: 15px;
+  margin: 0 15px;
+  box-shadow: inset 0 0 25px rgba(212, 175, 55, 0.04);
+}
+
+.currency-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+  padding: 10px 5px;
+}
+
+.currency-item img {
+  width: 45px;
+  border-radius: 6px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+}
+
+.currency-left {
+  display: flex;
+  align-items: center;
+}
+
+.currency-code {
+  color: var(--gold);
+  font-size: 22px;
+  font-weight: 700;
+  margin-left: 10px;
+  font-family: "Playfair Display", serif;
+}
+
+.currency-rate {
+  font-family: "Orbitron", sans-serif;
+  font-size: 26px;
+  color: var(--text);
+  text-shadow: 0 0 12px rgba(212, 175, 55, 0.2);
+  animation: glow 3s ease-in-out infinite;
+}
+
+@keyframes glow {
+  0%,
+  100% {
+    text-shadow: 0 0 12px rgba(212, 175, 55, 0.2);
+  }
+  50% {
+    text-shadow: 0 0 24px rgba(212, 175, 55, 0.4);
+  }
+}
+
+/* === BUTTONS & FORM === */
+#toggle-form-btn {
+  margin: 25px auto;
+  display: block;
+  padding: 12px 26px;
+  font-size: 18px;
+  color: #000;
+  background: linear-gradient(90deg, var(--gold), var(--gold-soft));
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+#toggle-form-btn:hover {
+  filter: brightness(1.1);
+  transform: translateY(-2px);
+}
+
+#hidden-form {
+  display: none;
+  background: #111;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid rgba(212, 175, 55, 0.1);
+  margin-top: 10px;
+}
+#hidden-form h3 {
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+form select,
+form input {
+  padding: 10px;
+  background: #0d0d0d;
+  border: 1px solid rgba(212, 175, 55, 0.1);
+  border-radius: 6px;
+  color: var(--text);
+  font-size: 16px;
+}
+form button {
+  background: linear-gradient(90deg, var(--gold), var(--gold-soft));
+  border: none;
+  border-radius: 6px;
+  padding: 10px 18px;
+  font-weight: 700;
+  color: #000;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+form button:hover {
+  filter: brightness(1.15);
+}
+
+footer {
+  text-align: center;
+  color: var(--gold);
+  margin-top: 20px;
+  font-size: 16px;
+  opacity: 0.8;
+}
+
+/* === RESPONSIVE DESIGN === */
+@media (max-width: 1200px) {
+  .container {
+    width: 95%;
+    padding: 15px 20px;
+  }
+
+  .header-text {
+    font-size: 42px;
+  }
+
+  .contact-info {
+    min-width: 250px;
+  }
+}
+
+@media (max-width: 968px) {
+  header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .logo {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .contact-info {
+    flex-direction: row;
+    justify-content: center;
+    margin-left: 0;
+    margin-top: 20px;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .contact-card {
+    min-width: 220px;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    padding: 15px;
+  }
+
+  .header-text {
+    font-size: 36px;
+  }
+
+  .contact-info {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .contact-card {
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .currency-list {
+    width: 100%;
+    margin: 10px 0;
+  }
+}

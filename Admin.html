@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Panel - NEGARA VALAS</title>
+    <link rel="stylesheet" href="admin.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Orbitron:wght@600&family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="admin-container">
+      <!-- LOGIN SCREEN -->
+      <div id="login-screen" class="login-screen">
+        <div class="login-card">
+          <div class="login-header">
+            <h1>🔐 ADMIN PANEL</h1>
+            <p>NEGARA VALAS - Money Changer</p>
+          </div>
+
+          <form id="login-form" class="login-form">
+            <div class="input-group">
+              <label for="username">Username</label>
+              <input
+                type="text"
+                id="username"
+                placeholder="Masukkan username"
+                required
+              />
+            </div>
+
+            <div class="input-group">
+              <label for="password">Password</label>
+              <input
+                type="password"
+                id="password"
+                placeholder="Masukkan password"
+                required
+              />
+            </div>
+
+            <button type="submit" class="login-btn">
+              🚀 Login ke Admin Panel
+            </button>
+          </form>
+
+          <div class="login-footer">
+            <small>Hanya untuk staff authorized</small>
+          </div>
+        </div>
+      </div>
+
+      <!-- ADMIN DASHBOARD -->
+      <div id="admin-dashboard" class="admin-dashboard" style="display: none">
+        <div class="dashboard-header">
+          <div class="header-left">
+            <h1>💰 ADMIN DASHBOARD</h1>
+            <p>NEGARA VALAS - Update Kurs Mata Uang</p>
+          </div>
+          <div class="header-right">
+            <span id="admin-welcome">Welcome, Admin!</span>
+            <button id="logout-btn" class="logout-btn">🚪 Logout</button>
+          </div>
+        </div>
+
+        <div class="dashboard-content">
+          <!-- QUICK UPDATE FORM -->
+          <div class="update-card">
+            <h2>⚡ Update Harga Cepat</h2>
+            <form id="quick-update-form" class="update-form">
+              <div class="form-row">
+                <select id="currency-select" required>
+                  <option value="">Pilih Mata Uang</option>
+                </select>
+                <input
+                  type="number"
+                  id="new-rate"
+                  placeholder="Harga Baru"
+                  step="0.01"
+                  required
+                />
+                <button type="submit">💾 Update</button>
+              </div>
+            </form>
+          </div>
+
+          <!-- BULK UPDATE -->
+          <div class="bulk-update-card">
+            <h2>📊 Update Massal</h2>
+            <div class="bulk-grid" id="bulk-update-grid">
+              <!-- Dynamic content akan diisi oleh JavaScript -->
+            </div>
+            <button id="bulk-save-btn" class="bulk-save-btn">
+              💾 Simpan Semua Perubahan
+            </button>
+          </div>
+
+          <!-- CURRENT RATES -->
+          <div class="rates-card">
+            <h2>📈 Harga Saat Ini</h2>
+            <div class="rates-grid" id="current-rates-grid">
+              <!-- Dynamic content -->
+            </div>
+          </div>
+
+          <!-- STATUS & LOGS -->
+          <div class="status-card">
+            <h2>📋 Status & Log</h2>
+            <div id="status-messages" class="status-messages">
+              <div class="status-item success">
+                <span class="time">14:30</span>
+                <span class="message">Sistem admin ready</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+
+    <script src="admin.js"></script>
+  </body>
+</html>
