@@ -25,8 +25,8 @@ const currencyData = [
 // Variabel global untuk Firebase database
 let db;
 
-// Waktu terakhir update (hanya berubah saat harga diupdate)
-let lastUpdateTime = null;
+// Waktu terakhir update (simpan di localStorage agar persist)
+let lastUpdateTime = localStorage.getItem('negaraValas_lastUpdateTime');
 
 // === INISIALISASI FIREBASE ===
 function initializeFirebase() {
@@ -123,7 +123,7 @@ function formatRate(rate) {
     return rate;
 }
 
-// === Tanggal terakhir update (hanya saat harga berubah) ===
+// === Tanggal terakhir update ===
 function updateCurrentDate() {
     const el = document.getElementById("current-date");
     if (!el) {
@@ -131,23 +131,33 @@ function updateCurrentDate() {
         return;
     }
 
-    // Jika belum ada waktu update, gunakan waktu sekarang
-    if (!lastUpdateTime) {
-        lastUpdateTime = new Date();
+    // Gunakan waktu dari localStorage jika ada, jika tidak gunakan waktu sekarang
+    if (lastUpdateTime) {
+        const savedTime = new Date(lastUpdateTime);
+        el.textContent = "Terakhir diperbarui: " + savedTime.toLocaleDateString("id-ID", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+            hour: "2-digit",
+            minute: "2-digit"
+        });
+    } else {
+        // Jika belum pernah update, gunakan waktu Firebase data pertama kali load
+        const currentTime = new Date();
+        el.textContent = "Terakhir diperbarui: " + currentTime.toLocaleDateString("id-ID", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+            hour: "2-digit",
+            minute: "2-digit"
+        });
     }
-    
-    el.textContent = "Terakhir diperbarui: " + lastUpdateTime.toLocaleDateString("id-ID", {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-        hour: "2-digit",
-        minute: "2-digit"
-    });
 }
 
 // === Update waktu hanya ketika data berubah ===
 function handleDataUpdate() {
-    lastUpdateTime = new Date(); // Update waktu ke sekarang
+    lastUpdateTime = new Date().toISOString(); // Simpan sebagai ISO string
+    localStorage.setItem('negaraValas_lastUpdateTime', lastUpdateTime); // Simpan ke localStorage
     updateCurrentDate(); // Tampilkan waktu update
     console.log("🕐 Waktu update diperbarui:", lastUpdateTime);
 }
@@ -175,6 +185,13 @@ function initializeFirebaseListener() {
             }
 
             let updated = false;
+            let initialLoad = false;
+            
+            // Cek apakah ini load pertama kali (semua rate masih "-")
+            if (currencyData.every(item => item.rate === "-")) {
+                initialLoad = true;
+            }
+
             for (const [key, value] of Object.entries(data)) {
                 const item = currencyData.find((c) => c.currency === key);
                 if (item) {
@@ -187,7 +204,20 @@ function initializeFirebaseListener() {
 
             if (updated) {
                 renderRates();
-                handleDataUpdate();
+                // Update waktu hanya jika bukan initial load pertama
+                if (!initialLoad) {
+                    handleDataUpdate();
+                } else {
+                    // Untuk initial load, set waktu ke sekarang tapi jangan simpan ke localStorage
+                    const currentTime = new Date();
+                    document.getElementById("current-date").textContent = "Terakhir diperbarui: " + currentTime.toLocaleDateString("id-ID", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                        hour: "2-digit",
+                        minute: "2-digit"
+                    });
+                }
                 console.log("✅ Rates berhasil diperbarui dari Firebase");
             }
         }, (error) => {
