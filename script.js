@@ -47,13 +47,14 @@ function initializeFirebase() {
     }
 }
 
-// === RENDER UTAMA: tampilkan ke 3 kolom ===
+// === RENDER UTAMA: tampilkan ke 4 kolom ===
 function renderRates() {
     const col1 = document.getElementById("currency-list-1");
     const col2 = document.getElementById("currency-list-2");
     const col3 = document.getElementById("currency-list-3");
+    const col4 = document.getElementById("currency-list-4");
     
-    if (!col1 || !col2 || !col3) {
+    if (!col1 || !col2 || !col3 || !col4) {
         console.error("❌ Element currency list tidak ditemukan");
         return;
     }
@@ -61,12 +62,14 @@ function renderRates() {
     col1.innerHTML = "";
     col2.innerHTML = "";
     col3.innerHTML = "";
+    col4.innerHTML = "";
 
-    // Bagi menjadi 3 kolom
-    const itemsPerColumn = Math.ceil(currencyData.length / 3);
+    // Bagi menjadi 4 kolom untuk full screen
+    const itemsPerColumn = Math.ceil(currencyData.length / 4);
     const column1 = currencyData.slice(0, itemsPerColumn);
     const column2 = currencyData.slice(itemsPerColumn, itemsPerColumn * 2);
-    const column3 = currencyData.slice(itemsPerColumn * 2);
+    const column3 = currencyData.slice(itemsPerColumn * 2, itemsPerColumn * 3);
+    const column4 = currencyData.slice(itemsPerColumn * 3);
 
     column1.forEach((item) => {
         const element = createCurrencyItem(item);
@@ -82,8 +85,12 @@ function renderRates() {
         const element = createCurrencyItem(item);
         if (element) col3.appendChild(element);
     });
+    
+    column4.forEach((item) => {
+        const element = createCurrencyItem(item);
+        if (element) col4.appendChild(element);
+    });
 }
-
 function createCurrencyItem(item) {
     try {
         const div = document.createElement("div");
@@ -366,4 +373,5 @@ if (typeof module !== 'undefined' && module.exports) {
         initializeFirebase
     };
 }
+
 
