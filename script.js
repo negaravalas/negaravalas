@@ -13,7 +13,7 @@ const currencyData = [
   { currency: "CHF", rate: "-", flag: "https://flagcdn.com/w320/ch.png" },
   { currency: "SGD", rate: "-", flag: "https://flagcdn.com/w320/sg.png" },
   { currency: "MYR", rate: "-", flag: "https://flagcdn.com/w320/my.png" },
-  { currency: "MYR T", rate: "-", flag: "https://flagcdn.com/w320/my.png" }, // DIUBAH DARI "MYR K"
+  { currency: "MYR T", rate: "-", flag: "https://flagcdn.com/w320/my.png" },
   { currency: "HKD", rate: "-", flag: "https://flagcdn.com/w320/hk.png" },
   { currency: "NTY", rate: "-", flag: "https://flagcdn.com/w320/tw.png" },
   { currency: "KRW", rate: "-", flag: "https://flagcdn.com/w320/kr.png" },
@@ -100,7 +100,6 @@ function createCurrencyItem(item) {
         return null;
     }
 }
-
 // Format rate dengan pemisah ribuan
 function formatRate(rate) {
     if (rate === "-" || rate === "" || rate === null || rate === undefined) return "-";
@@ -365,6 +364,7 @@ if (typeof module !== 'undefined' && module.exports) {
         initializeFirebase
     };
 }
+
 
 
 
