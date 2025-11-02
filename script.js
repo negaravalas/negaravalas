@@ -49,6 +49,8 @@ function initializeFirebase() {
 
 // === RENDER UTAMA: tampilkan ke 3 kolom ===
 function renderRates() {
+    console.log("🔄 Rendering rates...");
+    
     const col1 = document.getElementById("currency-list-1");
     const col2 = document.getElementById("currency-list-2");
     const col3 = document.getElementById("currency-list-3");
@@ -68,6 +70,10 @@ function renderRates() {
     const column2 = currencyData.slice(itemsPerColumn, itemsPerColumn * 2);
     const column3 = currencyData.slice(itemsPerColumn * 2);
 
+    console.log("Kolom 1:", column1.length, "items");
+    console.log("Kolom 2:", column2.length, "items");
+    console.log("Kolom 3:", column3.length, "items");
+
     column1.forEach((item) => {
         const element = createCurrencyItem(item);
         if (element) col1.appendChild(element);
@@ -82,7 +88,10 @@ function renderRates() {
         const element = createCurrencyItem(item);
         if (element) col3.appendChild(element);
     });
+    
+    console.log("✅ Rates berhasil di-render");
 }
+
 function createCurrencyItem(item) {
     try {
         const div = document.createElement("div");
@@ -100,6 +109,7 @@ function createCurrencyItem(item) {
         return null;
     }
 }
+
 // Format rate dengan pemisah ribuan
 function formatRate(rate) {
     if (rate === "-" || rate === "" || rate === null || rate === undefined) return "-";
@@ -167,16 +177,18 @@ function initializeFirebaseListener() {
             let updated = false;
             for (const [key, value] of Object.entries(data)) {
                 const item = currencyData.find((c) => c.currency === key);
-                if (item && item.rate !== value) {
-                    item.rate = value;
-                    updated = true;
+                if (item) {
+                    if (item.rate !== value) {
+                        item.rate = value;
+                        updated = true;
+                    }
                 }
             }
 
             if (updated) {
                 renderRates();
-                handleDataUpdate(); // ← Hanya update waktu ketika data berubah
-                console.log("✅ Rates berhasil diperbarui");
+                handleDataUpdate();
+                console.log("✅ Rates berhasil diperbarui dari Firebase");
             }
         }, (error) => {
             console.error("❌ Error Firebase listener:", error);
@@ -192,117 +204,12 @@ function initializeFirebaseListener() {
 
 // Tampilkan rates default jika Firebase error
 function showDefaultRates() {
+    console.log("🔄 Menampilkan rates default");
     currencyData.forEach(item => {
         item.rate = "-";
     });
     renderRates();
     updateCurrentDate();
-}
-
-// === Update rate ke Firebase ===
-function updateRate(e) {
-    e.preventDefault();
-    
-    const currency = document.getElementById("currency-select").value;
-    const newRate = document.getElementById("new-rate").value.trim();
-    
-    if (!newRate) {
-        alert("⚠️ Masukkan nilai baru!");
-        return;
-    }
-
-    if (!currency) {
-        alert("⚠️ Pilih mata uang terlebih dahulu!");
-        return;
-    }
-
-    if (!db) {
-        alert("❌ Database tidak terhubung!");
-        return;
-    }
-
-    console.log(`🔄 Memperbarui ${currency} ke ${newRate}`);
-    
-    // Show loading state
-    const submitBtn = document.querySelector('#hidden-form button[type="submit"]');
-    const originalText = submitBtn.textContent;
-    submitBtn.textContent = "Memperbarui...";
-    submitBtn.disabled = true;
-
-    db.ref("RATES/" + currency)
-        .set(newRate)
-        .then(() => {
-            console.log(`✅ ${currency} berhasil diperbarui ke ${newRate}`);
-            alert(`✅ Harga ${currency} berhasil diperbarui ke ${newRate}`);
-            document.getElementById("new-rate").value = "";
-            
-            // Update waktu secara lokal juga
-            handleDataUpdate();
-        })
-        .catch((err) => {
-            console.error("❌ Gagal memperbarui:", err);
-            alert("❌ Gagal memperbarui: " + err.message);
-        })
-        .finally(() => {
-            submitBtn.textContent = originalText;
-            submitBtn.disabled = false;
-        });
-}
-
-// === Toggle form update ===
-function setupToggleForm() {
-    const toggleBtn = document.getElementById("toggle-form-btn");
-    if (!toggleBtn) {
-        console.error("❌ Toggle button tidak ditemukan");
-        return;
-    }
-
-    toggleBtn.addEventListener("click", () => {
-        const form = document.getElementById("hidden-form");
-        if (!form) {
-            console.error("❌ Hidden form tidak ditemukan");
-            return;
-        }
-        
-        form.style.display = form.style.display === "block" ? "none" : "block";
-    });
-}
-
-// === Isi dropdown ===
-function populateSelect() {
-    const sel = document.getElementById("currency-select");
-    if (!sel) {
-        console.error("❌ Currency select element tidak ditemukan");
-        return;
-    }
-    
-    sel.innerHTML = "";
-    
-    // Tambahkan option default
-    const defaultOption = document.createElement("option");
-    defaultOption.value = "";
-    defaultOption.textContent = "Pilih Mata Uang";
-    defaultOption.disabled = true;
-    defaultOption.selected = true;
-    sel.appendChild(defaultOption);
-    
-    currencyData.forEach((c) => {
-        const opt = document.createElement("option");
-        opt.value = c.currency;
-        opt.textContent = c.currency;
-        sel.appendChild(opt);
-    });
-}
-
-// === Setup form submission ===
-function setupFormSubmission() {
-    const form = document.getElementById("update-form");
-    if (!form) {
-        console.error("❌ Update form tidak ditemukan");
-        return;
-    }
-    
-    form.addEventListener("submit", updateRate);
 }
 
 // === Test koneksi Firebase ===
@@ -324,13 +231,11 @@ function testFirebaseConnection() {
 // === Init ===
 window.onload = function() {
     console.log("🚀 Aplikasi NEGARA VALAS dimulai...");
+    console.log("Jumlah mata uang:", currencyData.length);
     
     // Inisialisasi komponen UI terlebih dahulu
-    populateSelect();
     renderRates();
     updateCurrentDate();
-    setupToggleForm();
-    setupFormSubmission();
     
     // Inisialisasi Firebase
     const firebaseInitialized = initializeFirebase();
@@ -356,16 +261,12 @@ window.addEventListener('error', function(e) {
     console.error('❌ Global error:', e.error);
 });
 
-// Export untuk testing (jika diperlukan)
+// Debug: Export untuk testing
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
         currencyData,
         formatRate,
-        initializeFirebase
+        initializeFirebase,
+        renderRates
     };
 }
-
-
-
-
-
