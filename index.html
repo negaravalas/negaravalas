@@ -13,85 +13,69 @@
 
   <body>
     <div class="container">
-      <!-- === HEADER === -->
-      <header>
-        <img class="logo" src="logo.png" alt="Logo Negara Valas" />
+      <!-- === HEADER COMPACT === -->
+      <header class="compact-header">
+        <div class="header-main">
+          <img class="logo" src="logo.png" alt="Logo Negara Valas" />
 
-        <div class="header-text-container">
-          <div class="header-text">NEGARA VALAS</div>
-          <div class="sub-header-text">Authorized Money Changer</div>
-          
-          <!-- ALAMAT KANTOR -->
-          <div class="office-address">
-            <div class="address-item">
-              <strong>Head Office:</strong> Jl. Jend. Sudirman no 12, Pendem - Negara
-            </div>
-            <div class="address-item">
-              <strong>Branch Office:</strong> Jl. Denpasar - Gilimanuk, Pekutatan - Pekutatan
+          <div class="header-text-container">
+            <div class="header-text">NEGARA VALAS</div>
+            <div class="sub-header-text">Authorized Money Changer</div>
+            
+            <!-- ALAMAT KANTOR COMPACT -->
+            <div class="office-address">
+              <div class="address-item">
+                <strong>Head Office:</strong> Jl. Jend. Sudirman no 12, Pendem - Negara
+              </div>
+              <div class="address-item">
+                <strong>Branch Office:</strong> Jl. Denpasar - Gilimanuk, Pekutatan - Pekutatan
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- CONTACT INFO -->
-        <div class="contact-info">
-          <div class="contact-card whatsapp-card">
-            <div class="contact-icon">
-              <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
-            </div>
-            <div class="contact-details">
-              <div class="contact-title">WhatsApp</div>
-              <div class="contact-value">+62 896-5195-5797</div>
-              <a href="https://wa.me/6289651955797" target="_blank" class="contact-button">
-                💬 Chat Now
-              </a>
-            </div>
-          </div>
-
-          <div class="contact-card facebook-card">
-            <div class="contact-icon">
-              <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook">
-            </div>
-            <div class="contact-details">
-              <div class="contact-title">Facebook</div>
-              <div class="contact-value">@negara.valas</div>
-              <a href="https://facebook.com/negara.valas" target="_blank" class="contact-button">
-                👍 Follow Us
-              </a>
-            </div>
-          </div>
+        <!-- CONTACT INFO COMPACT -->
+        <div class="contact-info-compact">
+          <a href="https://wa.me/6289651955797" target="_blank" class="contact-compact whatsapp">
+            <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
+            <span>+62 896-5195-5797</span>
+          </a>
+          <a href="https://facebook.com/negara.valas" target="_blank" class="contact-compact facebook">
+            <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook">
+            <span>@negara.valas</span>
+          </a>
         </div>
       </header>
 
-      <!-- === DISPLAY BOARD === -->
-      <section class="price-board">
-        <h2>Exchange Rates</h2>
+      <!-- === EXCHANGE RATES COMPACT === -->
+      <section class="price-board-compact">
+        <h2 class="section-title">Exchange Rates</h2>
 
-        <!-- 3 KOLOM UNTUK MONITOR BESAR -->
-        <div class="currency-columns">
-          <div id="currency-list-1" class="currency-list"></div>
-          <div id="currency-list-2" class="currency-list"></div>
-          <div id="currency-list-3" class="currency-list"></div>
+        <!-- 4 KOLOM UNTUK FULL SCREEN -->
+        <div class="currency-grid">
+          <div id="currency-list-1" class="currency-column"></div>
+          <div id="currency-list-2" class="currency-column"></div>
+          <div id="currency-list-3" class="currency-column"></div>
+          <div id="currency-list-4" class="currency-column"></div>
         </div>
 
         <p id="current-date" class="update-time"></p>
       </section>
 
-      <!-- BEST RATE GUARANTEE BANNER -->
-      <div class="banner-section">
+      <!-- BEST RATE BANNER COMPACT -->
+      <div class="banner-compact">
         <div class="banner-content">
           <div class="banner-text">💎 Best Rate Guarantee in Town 💎</div>
-          <div class="banner-subtext">Kami jamin harga terbaik untuk semua mata uang asing!</div>
         </div>
       </div>
 
-      <footer>© 2025 NEGARA VALAS — All Rights Reserved</footer>
+      <footer class="compact-footer">© 2025 NEGARA VALAS — All Rights Reserved</footer>
     </div>
 
     <!-- === FIREBASE SETUP === -->
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
     <script>
-      // Firebase configuration
       const firebaseConfig = {
         apiKey: "AIzaSyA4WHiQfj5_r5JP_V8UQOZCYUlQP226BNU",
         authDomain: "negara-valas-1cca5.firebaseapp.com",
@@ -103,7 +87,6 @@
         measurementId: "G-SDJN00TMZ3"
       };
 
-      // Initialize Firebase
       try {
         firebase.initializeApp(firebaseConfig);
         console.log('✅ Firebase berhasil diinisialisasi');
@@ -112,7 +95,6 @@
       }
     </script>
 
-    <!-- === MAIN SCRIPT === -->
     <script src="script.js"></script>
   </body>
 </html>
