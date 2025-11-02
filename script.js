@@ -13,7 +13,7 @@ const currencyData = [
   { currency: "CHF", rate: "-", flag: "https://flagcdn.com/w320/ch.png" },
   { currency: "SGD", rate: "-", flag: "https://flagcdn.com/w320/sg.png" },
   { currency: "MYR", rate: "-", flag: "https://flagcdn.com/w320/my.png" },
-  { currency: "MYR T", rate: "-", flag: "https://flagcdn.com/w320/my.png" },
+  { currency: "MYR T", rate: "-", flag: "https://flagcdn.com/w320/my.png" }, // DIUBAH DARI "MYR K"
   { currency: "HKD", rate: "-", flag: "https://flagcdn.com/w320/hk.png" },
   { currency: "NTY", rate: "-", flag: "https://flagcdn.com/w320/tw.png" },
   { currency: "KRW", rate: "-", flag: "https://flagcdn.com/w320/kr.png" },
@@ -47,14 +47,13 @@ function initializeFirebase() {
     }
 }
 
-// === RENDER UTAMA: tampilkan ke 4 kolom ===
+// === RENDER UTAMA: tampilkan ke 3 kolom ===
 function renderRates() {
     const col1 = document.getElementById("currency-list-1");
     const col2 = document.getElementById("currency-list-2");
     const col3 = document.getElementById("currency-list-3");
-    const col4 = document.getElementById("currency-list-4");
     
-    if (!col1 || !col2 || !col3 || !col4) {
+    if (!col1 || !col2 || !col3) {
         console.error("❌ Element currency list tidak ditemukan");
         return;
     }
@@ -62,14 +61,12 @@ function renderRates() {
     col1.innerHTML = "";
     col2.innerHTML = "";
     col3.innerHTML = "";
-    col4.innerHTML = "";
 
-    // Bagi menjadi 4 kolom untuk full screen
-    const itemsPerColumn = Math.ceil(currencyData.length / 4);
+    // Bagi menjadi 3 kolom
+    const itemsPerColumn = Math.ceil(currencyData.length / 3);
     const column1 = currencyData.slice(0, itemsPerColumn);
     const column2 = currencyData.slice(itemsPerColumn, itemsPerColumn * 2);
-    const column3 = currencyData.slice(itemsPerColumn * 2, itemsPerColumn * 3);
-    const column4 = currencyData.slice(itemsPerColumn * 3);
+    const column3 = currencyData.slice(itemsPerColumn * 2);
 
     column1.forEach((item) => {
         const element = createCurrencyItem(item);
@@ -84,11 +81,6 @@ function renderRates() {
     column3.forEach((item) => {
         const element = createCurrencyItem(item);
         if (element) col3.appendChild(element);
-    });
-    
-    column4.forEach((item) => {
-        const element = createCurrencyItem(item);
-        if (element) col4.appendChild(element);
     });
 }
 function createCurrencyItem(item) {
@@ -373,6 +365,7 @@ if (typeof module !== 'undefined' && module.exports) {
         initializeFirebase
     };
 }
+
 
 
 
