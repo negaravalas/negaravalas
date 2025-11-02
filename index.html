@@ -15,44 +15,33 @@
     <div class="container">
       <!-- === HEADER === -->
       <header>
-      <img class="logo" src="logo.png" alt="Logo Negara Valas" />
+        <img class="logo" src="logo.png" alt="Logo Negara Valas" />
+
         <div class="header-text-container">
           <div class="header-text">NEGARA VALAS</div>
           <div class="sub-header-text">Authorized Money Changer</div>
-          <div class="sub-header-text-blink">
-            💎 Best Rate Guarantee in Town 💎
-          </div>
-
+          
           <!-- ALAMAT KANTOR -->
           <div class="office-address">
             <div class="address-item">
-              <strong>Head Office:</strong> Jl. Jend. Sudirman no 12, Pendem -
-              Negara
+              <strong>Head Office:</strong> Jl. Jend. Sudirman no 12, Pendem - Negara
             </div>
             <div class="address-item">
-              <strong>Branch Office:</strong> Jl. Denpasar - Gilimanuk,
-              Pekutatan - Pekutatan
+              <strong>Branch Office:</strong> Jl. Denpasar - Gilimanuk, Pekutatan - Pekutatan
             </div>
           </div>
         </div>
 
-        <!-- CONTACT INFO - NEW DESIGN -->
+        <!-- CONTACT INFO -->
         <div class="contact-info">
           <div class="contact-card whatsapp-card">
             <div class="contact-icon">
-              <img
-                src="https://cdn-icons-png.flaticon.com/512/733/733585.png"
-                alt="WhatsApp"
-              />
+              <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
             </div>
             <div class="contact-details">
               <div class="contact-title">WhatsApp</div>
               <div class="contact-value">+62 896-5195-5797</div>
-              <a
-                href="https://wa.me/6289651955797"
-                target="_blank"
-                class="contact-button"
-              >
+              <a href="https://wa.me/6289651955797" target="_blank" class="contact-button">
                 💬 Chat Now
               </a>
             </div>
@@ -60,19 +49,12 @@
 
           <div class="contact-card facebook-card">
             <div class="contact-icon">
-              <img
-                src="https://cdn-icons-png.flaticon.com/512/733/733547.png"
-                alt="Facebook"
-              />
+              <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook">
             </div>
             <div class="contact-details">
               <div class="contact-title">Facebook</div>
               <div class="contact-value">@negara.valas</div>
-              <a
-                href="https://facebook.com/negara.valas"
-                target="_blank"
-                class="contact-button"
-              >
+              <a href="https://facebook.com/negara.valas" target="_blank" class="contact-button">
                 👍 Follow Us
               </a>
             </div>
@@ -84,38 +66,28 @@
       <section class="price-board">
         <h2>Exchange Rates</h2>
 
-        <div style="display: flex; justify-content: center; gap: 20px">
-          <div id="currency-list" class="currency-list"></div>
-          <div id="additional-currency-list" class="currency-list"></div>
+        <!-- 3 KOLOM UNTUK MONITOR BESAR -->
+        <div class="currency-columns">
+          <div id="currency-list-1" class="currency-list"></div>
+          <div id="currency-list-2" class="currency-list"></div>
+          <div id="currency-list-3" class="currency-list"></div>
         </div>
 
-        <p
-          id="current-date"
-          style="margin-top: 20px; font-size: 18px; color: #d4af37"
-        ></p>
+        <p id="current-date" class="update-time"></p>
       </section>
 
-      <!-- === TOGGLE FORM === -->
-      <button id="toggle-form-btn">Update Harga</button>
-
-      <div id="hidden-form">
-        <h3>Update Kurs Mata Uang</h3>
-        <form id="update-form">
-          <select id="currency-select"></select>
-          <input
-            type="number"
-            id="new-rate"
-            placeholder="Masukkan nilai baru"
-            step="0.01"
-          />
-          <button type="submit">Simpan Perubahan</button>
-        </form>
+      <!-- BEST RATE GUARANTEE BANNER -->
+      <div class="banner-section">
+        <div class="banner-content">
+          <div class="banner-text">💎 Best Rate Guarantee in Town 💎</div>
+          <div class="banner-subtext">Kami jamin harga terbaik untuk semua mata uang asing!</div>
+        </div>
       </div>
 
       <footer>© 2025 NEGARA VALAS — All Rights Reserved</footer>
     </div>
 
-    <!-- === FIREBASE SETUP - GUNAKAN VERSI 9 COMPAT === -->
+    <!-- === FIREBASE SETUP === -->
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
     <script>
@@ -123,21 +95,20 @@
       const firebaseConfig = {
         apiKey: "AIzaSyA4WHiQfj5_r5JP_V8UQOZCYUlQP226BNU",
         authDomain: "negara-valas-1cca5.firebaseapp.com",
-        databaseURL:
-          "https://negara-valas-1cca5-default-rtdb.asia-southeast1.firebasedatabase.app",
+        databaseURL: "https://negara-valas-1cca5-default-rtdb.asia-southeast1.firebasedatabase.app",
         projectId: "negara-valas-1cca5",
         storageBucket: "negara-valas-1cca5.firebasestorage.app",
         messagingSenderId: "1027331694437",
         appId: "1:1027331694437:web:61f986f0e56c87a46a0b8c",
-        measurementId: "G-SDJN00TMZ3",
+        measurementId: "G-SDJN00TMZ3"
       };
 
       // Initialize Firebase
       try {
         firebase.initializeApp(firebaseConfig);
-        console.log("✅ Firebase berhasil diinisialisasi");
+        console.log('✅ Firebase berhasil diinisialisasi');
       } catch (error) {
-        console.error("❌ Error inisialisasi Firebase:", error);
+        console.error('❌ Error inisialisasi Firebase:', error);
       }
     </script>
 
@@ -145,14 +116,3 @@
     <script src="script.js"></script>
   </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
