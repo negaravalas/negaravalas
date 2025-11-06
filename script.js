@@ -64,8 +64,8 @@ function renderRates() {
     col2.innerHTML = "";
     col3.innerHTML = "";
 
-    // Bagi menjadi 3 kolom
-    const itemsPerColumn = Math.ceil(currencyData.length / 3);
+    // Bagi menjadi 3 kolom dengan masing-masing 6 mata uang
+    const itemsPerColumn = 6;
     const column1 = currencyData.slice(0, itemsPerColumn);
     const column2 = currencyData.slice(itemsPerColumn, itemsPerColumn * 2);
     const column3 = currencyData.slice(itemsPerColumn * 2);
@@ -134,7 +134,7 @@ function updateCurrentDate() {
     // Gunakan waktu dari localStorage jika ada, jika tidak gunakan waktu sekarang
     if (lastUpdateTime) {
         const savedTime = new Date(lastUpdateTime);
-        el.textContent = "Terakhir diperbarui: " + savedTime.toLocaleDateString("id-ID", {
+        el.textContent = "Last Updated: " + savedTime.toLocaleDateString("id-ID", {
             year: "numeric",
             month: "long",
             day: "numeric",
@@ -144,7 +144,7 @@ function updateCurrentDate() {
     } else {
         // Jika belum pernah update, gunakan waktu Firebase data pertama kali load
         const currentTime = new Date();
-        el.textContent = "Terakhir diperbarui: " + currentTime.toLocaleDateString("id-ID", {
+        el.textContent = "Last Updated: " + currentTime.toLocaleDateString("id-ID", {
             year: "numeric",
             month: "long",
             day: "numeric",
@@ -210,7 +210,7 @@ function initializeFirebaseListener() {
                 } else {
                     // Untuk initial load, set waktu ke sekarang tapi jangan simpan ke localStorage
                     const currentTime = new Date();
-                    document.getElementById("current-date").textContent = "Terakhir diperbarui: " + currentTime.toLocaleDateString("id-ID", {
+                    document.getElementById("current-date").textContent = "Last Updated: " + currentTime.toLocaleDateString("id-ID", {
                         year: "numeric",
                         month: "long",
                         day: "numeric",

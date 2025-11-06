@@ -13,11 +13,15 @@
 
   <body>
     <div class="container">
+      <!-- Background dengan logo -->
+      <div class="background-logo"></div>
+      
       <!-- === HEADER === -->
       <header class="main-header">
         <img class="logo" src="logo.png" alt="Logo Negara Valas" />
         
         <div class="header-content">
+          <div class="company-name">PT. DUA DARA VALUTAMA</div>
           <div class="header-text">NEGARA VALAS</div>
           <div class="sub-header-text">Authorized Money Changer</div>
           
@@ -54,8 +58,6 @@
 
       <!-- === EXCHANGE RATES === -->
       <section class="rates-section">
-        <h2 class="rates-title">Exchange Rates</h2>
-
         <!-- 3 KOLOM -->
         <div class="rates-grid">
           <div id="currency-list-1" class="rates-column"></div>
@@ -63,16 +65,15 @@
           <div id="currency-list-3" class="rates-column"></div>
         </div>
 
-        <p id="current-date" class="update-time"></p>
-      </section>
-
-      <!-- BEST RATE BANNER -->
-      <div class="banner">
-        <div class="banner-content">
-          <div class="banner-main">💎 Best Rate Guarantee in Town 💎</div>
-          <div class="banner-sub">Kami jamin harga terbaik untuk semua mata uang asing!</div>
+        <!-- RUNNING TEXT -->
+        <div class="running-text">
+          <div class="running-text-content">
+            <span class="running-text-item">💎 BEST RATE GUARANTEE IN TOWN 💎</span>
+            <span class="running-text-item">💰 NO COMMISSION 💰</span>
+            <span id="current-date" class="running-text-item">Last Updated: -</span>
+          </div>
         </div>
-      </div>
+      </section>
 
       <footer class="main-footer">© 2025 NEGARA VALAS — All Rights Reserved</footer>
     </div>
